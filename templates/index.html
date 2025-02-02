@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Asset Inventory Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Upload IT Asset Inventory File</h2>
+        <form method="post" enctype="multipart/form-data" class="upload-form">
+            <input type="file" name="file" required class="file-input">
+            <button type="submit" class="submit-btn">Upload & Generate Report</button>
+        </form>
+
+        {% if success %}
+            <div class="report-success">
+                <p>Report generated successfully! 
+                    <a href="{{ url_for('download_report', report_filename=report_filename) }}" class="download-link">Download Report</a>
+                </p>
+            </div>
+
+            <div class="metrics">
+                <h3>Report Metrics:</h3>
+                <div class="metrics-grid">
+                    <div class="metric-item">
+                        <strong>Total Assets</strong>
+                        <p>{{ metrics['Total Assets'] }}</p>
+                    </div>
+                    <div class="metric-item">
+                        <strong>Assets Nearing End-of-Life</strong>
+                        <p>{{ metrics['Assets Nearing End-of-Life'] }}</p>
+                    </div>
+                    <div class="metric-item">
+                        <strong>Unused Software Licenses</strong>
+                        <p>{{ metrics['Unused Software Licenses'] }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <h3>Uploaded Reports</h3>
+        {% if reports %}
+            <div class="uploaded-reports">
+                <ul>
+                    {% for report in reports %}
+                        <li class="report-item">
+                            <strong>{{ report['file_name'] }}</strong><br>
+                            <span class="upload-date">Uploaded on: {{ report['upload_date'] }}</span><br>
+                            <a href="{{ url_for('download_report', report_filename=report['report_path'].split('/')[-1]) }}" class="download-link">Download Report</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <p>No reports uploaded yet.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
