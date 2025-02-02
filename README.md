@@ -66,9 +66,6 @@ IT-Asset-Management/
 ├── uploads/                    # Directory for storing uploaded files & reports
 ├── templates/                   # HTML templates for rendering pages
 │   ├── index.html               # Home page
-│   ├── login.html               # Login page
-│   ├── signup.html              # Signup page
-│   ├── data_form.html           # Form for uploading data files
 │   ├── report.html              # Page for displaying report metrics
 ├── static/                      # Static files like CSS and images
 │   └── styles.css               # CSS styles for the frontend
