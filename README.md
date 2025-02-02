@@ -1,4 +1,3 @@
-Here’s a README file that describes your IT Asset Management project, including the steps for setting it up and using it:
 
 ---
 
